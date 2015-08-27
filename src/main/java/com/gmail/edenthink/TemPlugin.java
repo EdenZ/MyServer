@@ -117,7 +117,6 @@ public class TemPlugin extends JavaPlugin {
 
     //Build up the default config file when config file does not exist
     private void setupConfig() {
-        //TODO
         config = getConfig();
         cfile = new File(getDataFolder(), "config.yml");
 

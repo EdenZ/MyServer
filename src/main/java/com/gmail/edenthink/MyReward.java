@@ -3,7 +3,6 @@ package com.gmail.edenthink;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -84,7 +83,6 @@ public class MyReward extends JavaPlugin {
         return (economy != null);
     }
 
-
     //Three methods called when enabling
     private void initialVault() {
         if (!setupEconomy() ) {
@@ -104,15 +102,6 @@ public class MyReward extends JavaPlugin {
     //Put new Executor class here
     private void initialExecutor() {
 
-    }
-
-    private void checkHD() {
-        if (!Bukkit.getPluginManager().isPluginEnabled("HolographicDisplays")) {
-            getLogger().severe("*** HolographicDisplays is not installed or not enabled. ***");
-            getLogger().severe("*** This plugin will be disabled. ***");
-            this.setEnabled(false);
-            return;
-        }
     }
 
     //Build up the default config file when config file does not exist
@@ -164,20 +153,13 @@ public class MyReward extends JavaPlugin {
         data = YamlConfiguration.loadConfiguration(dfile);
     }
 
-
-
     @Override
     public void onEnable() {
-        checkHD();
         setupConfig();
         initialVault();
 
-
-
         initialListener();
         initialExecutor();
-
-
     }
 
     @Override

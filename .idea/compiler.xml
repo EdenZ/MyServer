@@ -26,6 +26,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="MyReward" target="1.8" />
       <module name="TemPlugin" target="1.8" />
     </bytecodeTargetLevel>
   </component>

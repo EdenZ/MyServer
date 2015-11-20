@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 /**
  * This is a template for bukkit plugin (Hooks with vault, titleManager)
  */
-public class TemPlugin extends JavaPlugin {
+public class MyReward extends JavaPlugin {
     public static Permission permission = null;
     public static Economy economy = null;
     public static Chat chat = null;

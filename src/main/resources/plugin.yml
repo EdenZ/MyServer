@@ -46,8 +46,7 @@
 #     inferno.burningdeaths: true
 
 name: TemPlugin
-main: com.gmail.edenthink.TemPlugin
-version: 1.0.0
+main: com.gmail.edenthink.MyRewardversion: 1.0.0
 author: Eden
 softdepend: [HolographicDisplays, Vault, TitleManager, ProtocolLib, GriefPrevention]
 commands:

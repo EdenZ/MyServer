@@ -1,19 +1,16 @@
 package com.gmail.edenthink;
 
-import com.gmail.edenthink.data.*;
+import com.gmail.edenthink.data.Factory;
+import com.gmail.edenthink.data.House;
+import com.gmail.edenthink.data.Party;
 import com.gmail.edenthink.tools.SerializableLocation;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
-import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -24,39 +21,8 @@ public class MyServer extends JavaPlugin {
     public static Economy economy = null;
     public static Chat chat = null;
     private static final Logger log = Logger.getLogger("Minecraft");
-    private FileConfiguration data;
-    private File dataFile;
-    private FileConfiguration config;
-    private File cfile;
-    private FileConfiguration langConfig;
-    private File languageFile;
-    private FileConfiguration houseData;
-    private File houseFile;
 
     //getter here
-    public static Logger getLog() {
-        return log;
-    }
-
-    public File getCfile() {
-        return cfile;
-    }
-
-    public FileConfiguration getData() {
-        return data;
-    }
-
-    public File getDataFile() {
-        return dataFile;
-    }
-
-    public File getLanguageFile() {
-        return languageFile;
-    }
-
-    public FileConfiguration getLangConfig() {
-        return langConfig;
-    }
 
     //Three methods to hook with vault
     private boolean setupPermissions()
@@ -111,84 +77,6 @@ public class MyServer extends JavaPlugin {
 
     //Build up the default config file when config file does not exist
     private void setupConfig() {
-        //Config
-        config = getConfig();
-        cfile = new File(getDataFolder(), "config.yml");
-        if(!getDataFolder().exists()) {
-            getDataFolder().mkdir();
-        }
-        //Data file
-        dataFile = new File(getDataFolder(), "data.yml");
-        if(!dataFile.exists()) {
-            try {
-                dataFile.createNewFile();
-            } catch (IOException e) {
-                log.info(ChatColor.RED + "Could not create data file!");
-            }
-        }
-        data = YamlConfiguration.loadConfiguration(dataFile);
-        //Language file
-        languageFile = new File(getDataFolder(), "lang.yml");
-        if(!languageFile.exists()) {
-            try {
-                languageFile.createNewFile();
-            } catch (IOException e) {
-                log.info(ChatColor.RED + "Could not create data file!");
-            }
-        }
-        langConfig = YamlConfiguration.loadConfiguration(languageFile);
-        saveDefaultConfig();
-    }
-
-
-
-    public void saveData() {
-        try {
-            data.save(dataFile);
-        } catch (IOException e) {
-            log.info(ChatColor.RED + "Could not save data file!");
-        }
-    }
-
-    public void reloadData() {
-        data = YamlConfiguration.loadConfiguration(dataFile);
-    }
-
-    public void reloadHouseData() {
-        if (houseFile == null) {
-            houseFile = new File(getDataFolder(), "house.yml");
-        }
-        houseData = YamlConfiguration.loadConfiguration(houseFile);
-
-        // Look for defaults in the jar
-        Reader defConfigStream = null;
-        try {
-            defConfigStream = new InputStreamReader(this.getResource("house.yml"), "UTF8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        if (defConfigStream != null) {
-            YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-            //houseData.setDefaults(defConfig);
-        }
-    }
-
-    public FileConfiguration getHouseData() {
-        if (houseData == null) {
-            reloadHouseData();
-        }
-        return houseData;
-    }
-
-    public void saveHouseData() {
-        if (houseData == null || houseFile == null) {
-            return;
-        }
-        try {
-            getHouseData().save(houseFile);
-        } catch (IOException ex) {
-            getLogger().log(Level.SEVERE, "Could not save config to " + houseFile, ex);
-        }
     }
 
     @Override
@@ -197,6 +85,7 @@ public class MyServer extends JavaPlugin {
         ConfigurationSerialization.registerClass(SerializableLocation.class);
         ConfigurationSerialization.registerClass(House.class);
         ConfigurationSerialization.registerClass(Party.class);
+        ConfigurationSerialization.registerClass(Factory.class);
         //enable managers
 
         //setup config
@@ -210,8 +99,6 @@ public class MyServer extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        saveData();
-        saveHouseData();
         log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
     }
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MyServer">
+    <output-path>$USER_HOME$/Desktop/MyServer/main/plugins</output-path>
+    <root id="archive" name="MyServer.jar">
+      <element id="module-output" name="MyServer" />
+    </root>
+  </artifact>
+</component>

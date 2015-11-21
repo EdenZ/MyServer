@@ -154,21 +154,26 @@ public class MyServer extends JavaPlugin {
         data = YamlConfiguration.loadConfiguration(dataFile);
     }
 
-    public void reloadHouseData() throws UnsupportedEncodingException {
+    public void reloadHouseData() {
         if (houseFile == null) {
-            houseFile = new File(getDataFolder(), "houseData.yml");
+            houseFile = new File(getDataFolder(), "house.yml");
         }
         houseData = YamlConfiguration.loadConfiguration(houseFile);
 
         // Look for defaults in the jar
-        Reader defConfigStream = new InputStreamReader(this.getResource("house.yml"), "UTF8");
+        Reader defConfigStream = null;
+        try {
+            defConfigStream = new InputStreamReader(this.getResource("house.yml"), "UTF8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         if (defConfigStream != null) {
             YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-            houseData.setDefaults(defConfig);
+            //houseData.setDefaults(defConfig);
         }
     }
 
-    public FileConfiguration getHouseData() throws UnsupportedEncodingException {
+    public FileConfiguration getHouseData() {
         if (houseData == null) {
             reloadHouseData();
         }
@@ -205,6 +210,7 @@ public class MyServer extends JavaPlugin {
     @Override
     public void onDisable() {
         saveData();
+        saveHouseData();
         log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
     }
 }

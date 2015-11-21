@@ -5,16 +5,15 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Eden on 2015/11/21.
  */
 public class House implements ConfigurationSerializable {
     private String owner;
+    //KEY
+    private UUID uuid;
     private int furniture = 0, room = 0, level = 0, mark = 0;
     private List<SerializableLocation> generators;
 
@@ -25,6 +24,7 @@ public class House implements ConfigurationSerializable {
      */
     public House(Player owner) {
         this.owner = owner.getName();
+        uuid = UUID.randomUUID();
         generators = new ArrayList<>();
         //The location is not good
         generators.add(new SerializableLocation(owner.getLocation().add(new Vector(0, -1, 0))));
@@ -36,6 +36,7 @@ public class House implements ConfigurationSerializable {
      * @param map The data file
      */
     public House(Map<String, Object> map) {
+        uuid = UUID.fromString((String) map.get("UUID"));
         owner = (String) map.get("Owner");
         generators = (List<SerializableLocation>) map.get("Generator");
         furniture = (int) map.get("Furniture");
@@ -88,9 +89,14 @@ public class House implements ConfigurationSerializable {
         this.generators = generators;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
     @Override
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<>();
+        map.put("UUID", uuid.toString());
         map.put("Owner", owner);
         map.put("Generator", generators);
         map.put("Furniture", furniture);

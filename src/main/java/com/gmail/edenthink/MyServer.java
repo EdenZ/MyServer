@@ -11,8 +11,8 @@ import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -24,11 +24,14 @@ public class MyServer extends JavaPlugin {
     public static Chat chat = null;
     private static final Logger log = Logger.getLogger("Minecraft");
     private FileConfiguration data;
-    private File dfile;
+    private File dataFile;
     private FileConfiguration config;
     private File cfile;
     private FileConfiguration langConfig;
-    private File lfile;
+    private File languageFile;
+    private FileConfiguration houseData;
+    private File houseFile;
+    private HouseManager houseManager;
 
     //getter here
     public static Logger getLog() {
@@ -43,12 +46,12 @@ public class MyServer extends JavaPlugin {
         return data;
     }
 
-    public File getDfile() {
-        return dfile;
+    public File getDataFile() {
+        return dataFile;
     }
 
-    public File getLfile() {
-        return lfile;
+    public File getLanguageFile() {
+        return languageFile;
     }
 
     public FileConfiguration getLangConfig() {
@@ -108,59 +111,93 @@ public class MyServer extends JavaPlugin {
 
     //Build up the default config file when config file does not exist
     private void setupConfig() {
+        //Config
         config = getConfig();
         cfile = new File(getDataFolder(), "config.yml");
-
         if(!getDataFolder().exists()) {
             getDataFolder().mkdir();
         }
-
-        dfile = new File(getDataFolder(), "data.yml");
-
-        if(!dfile.exists()) {
+        //Data file
+        dataFile = new File(getDataFolder(), "data.yml");
+        if(!dataFile.exists()) {
             try {
-                dfile.createNewFile();
+                dataFile.createNewFile();
             } catch (IOException e) {
                 log.info(ChatColor.RED + "Could not create data file!");
             }
         }
-
-        data = YamlConfiguration.loadConfiguration(dfile);
-
-        lfile = new File(getDataFolder(), "lang.yml");
-
-        if(!lfile.exists()) {
+        data = YamlConfiguration.loadConfiguration(dataFile);
+        //Language file
+        languageFile = new File(getDataFolder(), "lang.yml");
+        if(!languageFile.exists()) {
             try {
-                lfile.createNewFile();
+                languageFile.createNewFile();
             } catch (IOException e) {
                 log.info(ChatColor.RED + "Could not create data file!");
             }
         }
-
-        langConfig = YamlConfiguration.loadConfiguration(lfile);
-
+        langConfig = YamlConfiguration.loadConfiguration(languageFile);
         saveDefaultConfig();
-
     }
+
+
 
     public void saveData() {
         try {
-            data.save(dfile);
+            data.save(dataFile);
         } catch (IOException e) {
             log.info(ChatColor.RED + "Could not save data file!");
         }
     }
 
     public void reloadData() {
-        data = YamlConfiguration.loadConfiguration(dfile);
+        data = YamlConfiguration.loadConfiguration(dataFile);
+    }
+
+    public void reloadHouseData() throws UnsupportedEncodingException {
+        if (houseFile == null) {
+            houseFile = new File(getDataFolder(), "houseData.yml");
+        }
+        houseData = YamlConfiguration.loadConfiguration(houseFile);
+
+        // Look for defaults in the jar
+        Reader defConfigStream = new InputStreamReader(this.getResource("house.yml"), "UTF8");
+        if (defConfigStream != null) {
+            YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+            houseData.setDefaults(defConfig);
+        }
+    }
+
+    public FileConfiguration getHouseData() throws UnsupportedEncodingException {
+        if (houseData == null) {
+            reloadHouseData();
+        }
+        return houseData;
+    }
+
+    public void saveHouseData() {
+        if (houseData == null || houseFile == null) {
+            return;
+        }
+        try {
+            getHouseData().save(houseFile);
+        } catch (IOException ex) {
+            getLogger().log(Level.SEVERE, "Could not save config to " + houseFile, ex);
+        }
     }
 
     @Override
     public void onEnable() {
+        //Register serializable
         ConfigurationSerialization.registerClass(SerializableLocation.class);
         ConfigurationSerialization.registerClass(HouseManager.House.class);
+        //enable managers
+        houseManager = new HouseManager(this);
+        //setup config
         setupConfig();
+        //vault
         initialVault();
+        //Listener and executor
         initialListener();
         initialExecutor();
     }

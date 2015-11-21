@@ -35,7 +35,15 @@ public class PlayerData implements ConfigurationSerializable{
      * @param map data
      */
     public PlayerData(Map<String, Object> map) {
-        //// FIXME: 2015/11/21
+        name = (String) map.get("Name");
+        rank = (int) map.get("Rank");
+        maxLevel = (int) map.get("MaxLevel");
+        if (map.containsKey("HouseID")) {
+            houseID = UUID.fromString((String) map.get("HouseID"));
+        }
+        if (map.containsKey("Party")) {
+            party = (String) map.get("Party");
+        }
     }
 
     //Getter and setter

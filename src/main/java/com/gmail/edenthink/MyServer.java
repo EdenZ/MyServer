@@ -1,5 +1,6 @@
 package com.gmail.edenthink;
 
+import com.gmail.edenthink.data.*;
 import com.gmail.edenthink.tools.SerializableLocation;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -31,7 +32,6 @@ public class MyServer extends JavaPlugin {
     private File languageFile;
     private FileConfiguration houseData;
     private File houseFile;
-    private HouseManager houseManager;
 
     //getter here
     public static Logger getLog() {
@@ -195,9 +195,9 @@ public class MyServer extends JavaPlugin {
     public void onEnable() {
         //Register serializable
         ConfigurationSerialization.registerClass(SerializableLocation.class);
-        ConfigurationSerialization.registerClass(HouseManager.House.class);
+        ConfigurationSerialization.registerClass(House.class);
         //enable managers
-        houseManager = new HouseManager(this);
+
         //setup config
         setupConfig();
         //vault

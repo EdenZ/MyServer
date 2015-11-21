@@ -1,11 +1,13 @@
 package com.gmail.edenthink;
 
+import com.gmail.edenthink.tools.SerializableLocation;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -155,9 +157,10 @@ public class MyServer extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        ConfigurationSerialization.registerClass(SerializableLocation.class);
+        ConfigurationSerialization.registerClass(HouseManager.House.class);
         setupConfig();
         initialVault();
-
         initialListener();
         initialExecutor();
     }

@@ -45,8 +45,9 @@
 #   children:
 #     inferno.burningdeaths: true
 
-name: TemPlugin
-main: com.gmail.edenthink.MyRewardversion: 1.0.0
+name: MyServer
+main: com.gmail.edenthink.MyServer
+version: 1.0.0
 author: Eden
-softdepend: [HolographicDisplays, Vault, TitleManager, ProtocolLib, GriefPrevention]
+softdepend: [Vault]
 commands:

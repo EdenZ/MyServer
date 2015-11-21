@@ -24,9 +24,17 @@
         <processorPath useClasspath="true" />
         <module name="TemPlugin" />
       </profile>
+      <profile default="false" name="Annotation profile for MyServer" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="MyServer" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="MyReward" target="1.8" />
+      <module name="MyServer" target="1.8" />
       <module name="TemPlugin" target="1.8" />
     </bytecodeTargetLevel>
   </component>

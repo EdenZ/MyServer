@@ -196,6 +196,7 @@ public class MyServer extends JavaPlugin {
         //Register serializable
         ConfigurationSerialization.registerClass(SerializableLocation.class);
         ConfigurationSerialization.registerClass(House.class);
+        ConfigurationSerialization.registerClass(Party.class);
         //enable managers
 
         //setup config

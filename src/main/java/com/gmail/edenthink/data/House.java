@@ -13,13 +13,13 @@ import java.util.Map;
 /**
  * Created by Eden on 2015/11/21.
  */
-class House implements ConfigurationSerializable {
+public class House implements ConfigurationSerializable {
     private String owner;
     private int furniture = 0, room = 0, level = 0, mark = 0;
     private List<SerializableLocation> generators;
 
     /**
-     * Constructor for new house
+     * Constructor for new House
      *
      * @param owner player name
      */
@@ -31,7 +31,7 @@ class House implements ConfigurationSerializable {
     }
 
     /**
-     * Constructor for house in data file
+     * Constructor for House in data file
      *
      * @param map The data file
      */
@@ -42,6 +42,50 @@ class House implements ConfigurationSerializable {
         room = (int) map.get("Room");
         level = (int) map.get("Level");
         mark = (int) map.get("Mark");
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public int getFurniture() {
+        return furniture;
+    }
+
+    public int getRoom() {
+        return room;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public List<SerializableLocation> getGenerators() {
+        return generators;
+    }
+
+    public void setFurniture(int furniture) {
+        this.furniture = furniture;
+    }
+
+    public void setRoom(int room) {
+        this.room = room;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public void setGenerators(List<SerializableLocation> generators) {
+        this.generators = generators;
     }
 
     @Override

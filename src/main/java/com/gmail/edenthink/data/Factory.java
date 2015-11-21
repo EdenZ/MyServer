@@ -7,14 +7,12 @@ import java.util.Map;
 /**
  * Created by Eden on 2015/11/21.
  */
-public class PlayerStats implements ConfigurationSerializable{
-    private int rank;
-    private House house;
-    private int maxLevel;
+public class Factory implements ConfigurationSerializable {
+    private Party party;
+    private int rent;
 
     @Override
     public Map<String, Object> serialize() {
         return null;
     }
-
 }

@@ -21,8 +21,13 @@ public class MyServer extends JavaPlugin {
     public static Economy economy = null;
     public static Chat chat = null;
     private static final Logger log = Logger.getLogger("Minecraft");
+    private DataController dataController;
 
     //getter here
+
+    public DataController getDataController() {
+        return dataController;
+    }
 
     //Three methods to hook with vault
     private boolean setupPermissions()
@@ -87,7 +92,8 @@ public class MyServer extends JavaPlugin {
         ConfigurationSerialization.registerClass(Party.class);
         ConfigurationSerialization.registerClass(Factory.class);
         //enable managers
-
+        GameTweak.plugin = this;
+        dataController = new DataController(this);
         //setup config
         setupConfig();
         //vault

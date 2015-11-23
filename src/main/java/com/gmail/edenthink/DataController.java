@@ -39,6 +39,10 @@ public class DataController {
         return false;
     }
 
+    public void createNewFile(Player player) {
+
+    }
+
     /**
      * Search for the data of a player by name
      * @param name name of the player

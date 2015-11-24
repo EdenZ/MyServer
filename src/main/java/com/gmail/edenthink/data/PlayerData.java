@@ -2,10 +2,8 @@ package com.gmail.edenthink.data;
 
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Eden on 2015/11/21.
@@ -14,10 +12,8 @@ public class PlayerData implements ConfigurationSerializable{
     //KEY
     private String name;
     private int rank;
-    @Nullable
-    private UUID houseID = null;
+    private String houseID = null;
     private int maxLevel;
-    @Nullable
     private String party =null;
 
     /**
@@ -39,7 +35,7 @@ public class PlayerData implements ConfigurationSerializable{
         rank = (int) map.get("Rank");
         maxLevel = (int) map.get("MaxLevel");
         if (map.containsKey("HouseID")) {
-            houseID = UUID.fromString((String) map.get("HouseID"));
+            houseID = (String) map.get("HouseID");
         }
         if (map.containsKey("Party")) {
             party = (String) map.get("Party");
@@ -59,11 +55,11 @@ public class PlayerData implements ConfigurationSerializable{
         this.rank = rank;
     }
 
-    public UUID getHouseID() {
+    public String getHouseID() {
         return houseID;
     }
 
-    public void setHouseID(UUID houseID) {
+    public void setHouseID(String houseID) {
         this.houseID = houseID;
     }
 
@@ -90,7 +86,7 @@ public class PlayerData implements ConfigurationSerializable{
         map.put("Rank", rank);
         map.put("MaxLevel", maxLevel);
         if (houseID != null) {
-            map.put("HouseID", houseID.toString());
+            map.put("HouseID", houseID);
         }
         if (party != null) {
             map.put("Party", party);

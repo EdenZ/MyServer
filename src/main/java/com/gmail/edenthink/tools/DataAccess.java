@@ -18,6 +18,11 @@ public class DataAccess {
     private String fileName;
     private String parent;
 
+    public DataAccess(String parent, String fileName) {
+        this.fileName = fileName;
+        this.parent = parent;
+    }
+
     public void reloadData() {
         if (dataFile == null) {
             dataFile = new File(parent, fileName);

@@ -1,6 +1,5 @@
 package com.gmail.edenthink;
 
-import com.gmail.edenthink.data.PlayerData;
 import org.bukkit.entity.Player;
 
 /**
@@ -14,13 +13,7 @@ public class GameTweak {
      * @param player the uped player
      */
     public static void limitMaxLevel(Player player) {
-        PlayerData d = plugin.getDataController().getDataByName(player.getName());
-        if (d == null) {
-            return;
-        }
-        if (player.getLevel() > d.getMaxLevel()) {
-            player.setLevel(d.getMaxLevel());
-        }
+        // FIXME: 2015/11/24
     }
 
     public static boolean denyAllyDamage(Player damaged, Player damager) {

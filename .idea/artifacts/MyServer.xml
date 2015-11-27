@@ -3,6 +3,10 @@
     <output-path>$USER_HOME$/Desktop/MyServer/main/plugins</output-path>
     <root id="archive" name="MyServer.jar">
       <element id="module-output" name="MyServer" />
+      <element id="file-copy" path="C:/sqlite/sqlite-jdbc-3.8.11.2.jar" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
     </root>
   </artifact>
 </component>

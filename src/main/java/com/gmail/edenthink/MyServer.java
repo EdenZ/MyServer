@@ -1,8 +1,5 @@
 package com.gmail.edenthink;
 
-import com.gmail.edenthink.data.Factory;
-import com.gmail.edenthink.data.House;
-import com.gmail.edenthink.data.Party;
 import com.gmail.edenthink.tools.SerializableLocation;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -13,21 +10,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
 
-/**
- * This is a template for bukkit plugin (Hooks with vault, titleManager)
- */
 public class MyServer extends JavaPlugin {
     public static Permission permission = null;
     public static Economy economy = null;
     public static Chat chat = null;
     private static final Logger log = Logger.getLogger("Minecraft");
-    private DataController dataController;
 
     //getter here
-
-    public DataController getDataController() {
-        return dataController;
-    }
 
     //Three methods to hook with vault
     private boolean setupPermissions()
@@ -88,12 +77,8 @@ public class MyServer extends JavaPlugin {
     public void onEnable() {
         //Register serializable
         ConfigurationSerialization.registerClass(SerializableLocation.class);
-        ConfigurationSerialization.registerClass(House.class);
-        ConfigurationSerialization.registerClass(Party.class);
-        ConfigurationSerialization.registerClass(Factory.class);
         //enable managers
         GameTweak.plugin = this;
-        dataController = new DataController(this);
         //setup config
         setupConfig();
         //vault

@@ -15,7 +15,7 @@ public class Driver {
             e.printStackTrace();
         }
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:storage.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:./plugins/MyServer/storage.db");
         } catch (SQLException e) {
             System.out.println(e);
         }

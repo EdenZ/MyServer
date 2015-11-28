@@ -1,5 +1,6 @@
 package com.gmail.edenthink;
 
+import com.gmail.edenthink.storage.Driver;
 import com.gmail.edenthink.storage.SQLManager;
 import com.gmail.edenthink.tools.SerializableLocation;
 import net.milkbowl.vault.chat.Chat;
@@ -93,6 +94,7 @@ public class MyServer extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        Driver.disconnect();
         log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
     }
 }

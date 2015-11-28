@@ -1,5 +1,6 @@
 package com.gmail.edenthink;
 
+import com.gmail.edenthink.storage.SQLManager;
 import com.gmail.edenthink.tools.SerializableLocation;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -61,7 +62,7 @@ public class MyServer extends JavaPlugin {
 
     //Put new listener class here
     private void initialListener() {
-
+        MyListener listener = new MyListener(this);
     }
 
     //Put new Executor class here
@@ -75,6 +76,8 @@ public class MyServer extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        SQLManager.createTable();
         //Register serializable
         ConfigurationSerialization.registerClass(SerializableLocation.class);
         //enable managers

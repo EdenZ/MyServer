@@ -1,6 +1,6 @@
 package com.gmail.edenthink.tools;
 
-import com.gmail.edenthink.GameTweak;
+import com.gmail.edenthink.tweak.GameTweak;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 

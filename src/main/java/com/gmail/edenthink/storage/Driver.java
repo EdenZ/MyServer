@@ -1,6 +1,8 @@
 package com.gmail.edenthink.storage;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Created by Eden on 2015/11/26.
@@ -8,6 +10,9 @@ import java.sql.*;
 public class Driver {
     private static Connection connection = null;
 
+    /**
+     * Connect to database
+     */
     public static void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
@@ -21,6 +26,10 @@ public class Driver {
         }
     }
 
+    /**
+     * Get the connection
+     * @return database connection
+     */
     public static Connection getConnection() {
         if (connection == null) {
             connect();
@@ -28,6 +37,9 @@ public class Driver {
         return connection;
     }
 
+    /**
+     * Disconnect
+     */
     public static void disconnect() {
         if (connection != null) {
             try {

@@ -3,6 +3,7 @@ package com.gmail.edenthink;
 import com.gmail.edenthink.storage.Driver;
 import com.gmail.edenthink.storage.SQLManager;
 import com.gmail.edenthink.tools.SerializableLocation;
+import com.gmail.edenthink.tweak.GameTweak;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -19,6 +20,21 @@ public class MyServer extends JavaPlugin {
     private static final Logger log = Logger.getLogger("Minecraft");
 
     //getter here
+    public static Logger getLog() {
+        return log;
+    }
+
+    public static Chat getChat() {
+        return chat;
+    }
+
+    public static Economy getEconomy() {
+        return economy;
+    }
+
+    public static Permission getPermission() {
+        return permission;
+    }
 
     //Three methods to hook with vault
     private boolean setupPermissions()
@@ -61,18 +77,8 @@ public class MyServer extends JavaPlugin {
         setupChat();
     }
 
-    //Put new listener class here
-    private void initialListener() {
-        MyListener listener = new MyListener(this);
-    }
-
     //Put new Executor class here
     private void initialExecutor() {
-
-    }
-
-    //Build up the default config file when config file does not exist
-    private void setupConfig() {
     }
 
     @Override
@@ -83,12 +89,10 @@ public class MyServer extends JavaPlugin {
         ConfigurationSerialization.registerClass(SerializableLocation.class);
         //enable managers
         GameTweak.plugin = this;
-        //setup config
-        setupConfig();
         //vault
         initialVault();
         //Listener and executor
-        initialListener();
+        MyListener listener = new MyListener(this);
         initialExecutor();
     }
 

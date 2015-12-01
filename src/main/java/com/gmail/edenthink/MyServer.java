@@ -104,7 +104,7 @@ public class MyServer extends JavaPlugin {
 
     //Put new Executor class here
     private void initialExecutor() {
-        getCommand("miner").setExecutor(new MinerCommand(this));
+        getCommand("miner").setExecutor(new MinerCommand());
     }
 
     @Override

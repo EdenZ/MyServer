@@ -14,11 +14,6 @@ import org.bukkit.entity.Player;
  *  show    -- show current power/ max power and current ticket number
  */
 public class MinerCommand implements CommandExecutor {
-    private MyServer plugin;
-
-    public MinerCommand(MyServer plugin) {
-        this.plugin = plugin;
-    }
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -35,7 +30,7 @@ public class MinerCommand implements CommandExecutor {
                 }
             } else if (strings.length == 2) {
                 if (strings[0].equalsIgnoreCase("buy")) {
-                    int cost = 0, tickets = 0;
+                    int cost, tickets;
                     if (strings[1].equalsIgnoreCase("1")) {
                         cost = 20;
                         tickets = 30;

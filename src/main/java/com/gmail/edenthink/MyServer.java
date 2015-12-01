@@ -1,9 +1,10 @@
 package com.gmail.edenthink;
 
-import com.gmail.edenthink.storage.Driver;
-import com.gmail.edenthink.storage.SQLManager;
+import com.gmail.edenthink.tools.Driver;
 import com.gmail.edenthink.tools.SerializableLocation;
 import com.gmail.edenthink.tweak.GameTweak;
+import com.gmail.edenthink.tweak.PlayerData;
+import com.gmail.edenthink.tweak.TweakListener;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -84,15 +85,16 @@ public class MyServer extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        SQLManager.createTable();
+        saveResource("storage.db", false);
         //Register serializable
         ConfigurationSerialization.registerClass(SerializableLocation.class);
         //enable managers
         GameTweak.plugin = this;
+        GameTweak.playerData = new PlayerData();
         //vault
         initialVault();
         //Listener and executor
-        MyListener listener = new MyListener(this);
+        TweakListener listener = new TweakListener(this);
         initialExecutor();
     }
 

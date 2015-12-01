@@ -1,21 +1,17 @@
-package com.gmail.edenthink;
+package com.gmail.edenthink.tweak;
 
-import com.gmail.edenthink.storage.SQLManager;
-import com.gmail.edenthink.tweak.GameTweak;
+import com.gmail.edenthink.MyServer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLevelChangeEvent;
 
 /**
  * Listener class for whole plugin
  */
-public class MyListener implements Listener{
-    private MyServer plugin;
+public class TweakListener implements Listener{
 
-    public MyListener(MyServer plugin) {
-        this.plugin = plugin;
+    public TweakListener(MyServer plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -33,11 +29,5 @@ public class MyListener implements Listener{
     public void onLevelUp(PlayerLevelChangeEvent event) {
         //Tweak
         GameTweak.limitMaxLevel(event.getPlayer());
-    }
-
-    @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
-        //Tweak
-        SQLManager.playerLogin(event.getPlayer().getName());
     }
 }

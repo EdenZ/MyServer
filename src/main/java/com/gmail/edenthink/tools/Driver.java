@@ -1,4 +1,4 @@
-package com.gmail.edenthink.storage;
+package com.gmail.edenthink.tools;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,6 +9,7 @@ import java.sql.SQLException;
  */
 public class Driver {
     private static Connection connection = null;
+    private static final String DATABASE_URI = "jdbc:sqlite:./plugins/MyServer/storage.db";
 
     /**
      * Connect to database
@@ -20,7 +21,7 @@ public class Driver {
             e.printStackTrace();
         }
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:./plugins/MyServer/storage.db");
+            connection = DriverManager.getConnection(DATABASE_URI);
         } catch (SQLException e) {
             System.out.println(e);
         }

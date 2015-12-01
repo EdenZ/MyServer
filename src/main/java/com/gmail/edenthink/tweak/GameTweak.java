@@ -19,7 +19,7 @@ import static com.gmail.edenthink.tweak.PlayerData.P_MAX_LEVEL;
  */
 public class GameTweak {
     public static MyServer plugin;
-    public static PlayerData playerData;
+    public static PlayerData playerData = new PlayerData();
     public final static List<Integer> machineID = new ArrayList<>(Arrays.asList(192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209));
     public final static List<Integer> oreID = new ArrayList<>(Arrays.asList(14, 15, 56, 129, 165, 166, 167, 168));
 
@@ -58,5 +58,13 @@ public class GameTweak {
             }
             event.setCancelled(true);
         }
+    }
+
+    /**
+     * make a row for new player
+     * @param player player name
+     */
+    public static void newPlayerJoin(String player) {
+        playerData.insertRow(player);
     }
 }

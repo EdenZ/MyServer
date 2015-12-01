@@ -4,6 +4,7 @@ import com.gmail.edenthink.MyServer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLevelChangeEvent;
 
 /**
@@ -29,5 +30,10 @@ public class TweakListener implements Listener{
     public void onLevelUp(PlayerLevelChangeEvent event) {
         //Tweak
         GameTweak.limitMaxLevel(event.getPlayer());
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        GameTweak.newPlayerJoin(event.getPlayer().getName());
     }
 }

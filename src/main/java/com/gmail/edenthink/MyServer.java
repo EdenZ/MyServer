@@ -1,9 +1,9 @@
 package com.gmail.edenthink;
 
+import com.gmail.edenthink.ore.OreListener;
 import com.gmail.edenthink.tools.Driver;
 import com.gmail.edenthink.tools.SerializableLocation;
 import com.gmail.edenthink.tweak.GameTweak;
-import com.gmail.edenthink.tweak.PlayerData;
 import com.gmail.edenthink.tweak.TweakListener;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -90,11 +90,11 @@ public class MyServer extends JavaPlugin {
         ConfigurationSerialization.registerClass(SerializableLocation.class);
         //enable managers
         GameTweak.plugin = this;
-        GameTweak.playerData = new PlayerData();
         //vault
         initialVault();
         //Listener and executor
-        TweakListener listener = new TweakListener(this);
+        new TweakListener(this);
+        new OreListener(this);
         initialExecutor();
     }
 

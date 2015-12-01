@@ -1,5 +1,6 @@
 package com.gmail.edenthink;
 
+import com.gmail.edenthink.ore.MinerTaskManger;
 import com.gmail.edenthink.ore.OreListener;
 import com.gmail.edenthink.tools.Driver;
 import com.gmail.edenthink.tools.SerializableLocation;
@@ -21,6 +22,7 @@ public class MyServer extends JavaPlugin {
     private static final Logger log = Logger.getLogger("Minecraft");
     private TweakListener tweakListener;
     private OreListener oreListener;
+    private MinerTaskManger minerTaskManger;
 
     //getter here
     @SuppressWarnings("unused")
@@ -51,6 +53,11 @@ public class MyServer extends JavaPlugin {
     @SuppressWarnings("unused")
     public OreListener getOreListener() {
         return oreListener;
+    }
+
+    @SuppressWarnings("unused")
+    public MinerTaskManger getMinerTaskManger() {
+        return minerTaskManger;
     }
 
     //Three methods to hook with vault
@@ -111,6 +118,7 @@ public class MyServer extends JavaPlugin {
         //Listener and executor
         tweakListener = new TweakListener(this);
         oreListener = new OreListener(this);
+        minerTaskManger = new MinerTaskManger(this);
         initialExecutor();
     }
 

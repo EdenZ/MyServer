@@ -5,9 +5,10 @@ import com.gmail.edenthink.tweak.GameTweak;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 /**
- * Created by Eden on 2015/12/1.
+ * Listener class
  */
 public class OreListener implements Listener {
 
@@ -28,5 +29,10 @@ public class OreListener implements Listener {
         } else {
             event.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void newPlayer(PlayerJoinEvent event) {
+        OreResControl.minerData.insertRow(event.getPlayer().getName());
     }
 }

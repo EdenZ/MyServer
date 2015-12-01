@@ -1,7 +1,8 @@
 package com.gmail.edenthink.ore;
 
 /**
- * Created by Eden on 2015/12/1.
+ * Class for helping
+ * 1.Consume and regen power
  */
 public class OreResControl {
     public static MinerData minerData = new MinerData();

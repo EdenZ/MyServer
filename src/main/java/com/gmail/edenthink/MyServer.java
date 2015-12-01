@@ -1,5 +1,6 @@
 package com.gmail.edenthink;
 
+import com.gmail.edenthink.ore.MinerCommand;
 import com.gmail.edenthink.ore.MinerTaskManger;
 import com.gmail.edenthink.ore.OreListener;
 import com.gmail.edenthink.tools.Driver;
@@ -103,6 +104,7 @@ public class MyServer extends JavaPlugin {
 
     //Put new Executor class here
     private void initialExecutor() {
+        getCommand("miner").setExecutor(new MinerCommand(this));
     }
 
     @Override

@@ -51,3 +51,6 @@ version: 0.0.1
 author: Eden
 softdepend: [Vault]
 commands:
+ miner:
+   description: Miner command
+   usage: /miner buy 1/2/3 or /miner show

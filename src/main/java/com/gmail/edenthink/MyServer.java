@@ -19,22 +19,38 @@ public class MyServer extends JavaPlugin {
     public static Economy economy = null;
     public static Chat chat = null;
     private static final Logger log = Logger.getLogger("Minecraft");
+    private TweakListener tweakListener;
+    private OreListener oreListener;
 
     //getter here
+    @SuppressWarnings("unused")
     public static Logger getLog() {
         return log;
     }
 
+    @SuppressWarnings("unused")
     public static Chat getChat() {
         return chat;
     }
 
+    @SuppressWarnings("unused")
     public static Economy getEconomy() {
         return economy;
     }
 
+    @SuppressWarnings("unused")
     public static Permission getPermission() {
         return permission;
+    }
+
+    @SuppressWarnings("unused")
+    public TweakListener getTweakListener() {
+        return tweakListener;
+    }
+
+    @SuppressWarnings("unused")
+    public OreListener getOreListener() {
+        return oreListener;
     }
 
     //Three methods to hook with vault
@@ -93,8 +109,8 @@ public class MyServer extends JavaPlugin {
         //vault
         initialVault();
         //Listener and executor
-        new TweakListener(this);
-        new OreListener(this);
+        tweakListener = new TweakListener(this);
+        oreListener = new OreListener(this);
         initialExecutor();
     }
 

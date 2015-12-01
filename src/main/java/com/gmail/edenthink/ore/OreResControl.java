@@ -42,7 +42,17 @@ public class OreResControl {
         minerData.ticketModify(player, -1);
     }
 
+    /**
+     * regen the power
+     * @param player name
+     */
     public static void regenPower(String player) {
-        int current = minerData.getPower(player);
+        int next = minerData.getPower(player) + minerData.getRegenRate(player);
+        int max =  minerData.getMaxPower(player);
+        if (next > max) {
+            minerData.powerUpdate(player, max);
+            return;
+        }
+        minerData.powerUpdate(player, next);
     }
 }

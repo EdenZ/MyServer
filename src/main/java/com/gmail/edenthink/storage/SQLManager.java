@@ -8,13 +8,10 @@ import java.sql.Statement;
  * Created by Eden on 2015/11/27.
  */
 public class SQLManager {
-    public static final String PLAYER ="Player",
+    public static final String PLAYER = "Player",
             NAME = "Name",
-            MAX_LEVEL = "MaxLevel",
-            MONSTER_KILLED = "MonsterKilled",
-            ORE_MINED = "OreMined",
-            HOUSE_WORTH = "HouseWorth",
-            PARTY = "Party";
+            MAX_LEVEL = "maxlevel";
+
 
     /**
      * create table in database if the table does not exist, or do nothing
@@ -23,10 +20,6 @@ public class SQLManager {
         String sql = "CREATE TABLE " + PLAYER + "( " +
                 NAME + "  CHAR(50)  PRIMARY KEY, " +
                 MAX_LEVEL + "  INT DEFAULT 5, " +
-                MONSTER_KILLED + " INT DEFAULT 0, " +
-                ORE_MINED + " INT DEFAULT 0, " +
-                HOUSE_WORTH + " INT DEFAULT 0, " +
-                PARTY + " CHAR(50) " +
                 ");";
         executeSQL(sql);
     }

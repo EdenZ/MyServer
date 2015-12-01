@@ -47,7 +47,7 @@
 
 name: MyServer
 main: com.gmail.edenthink.MyServer
-version: 1.0.0
+version: 0.0.1
 author: Eden
 softdepend: [Vault]
 commands:

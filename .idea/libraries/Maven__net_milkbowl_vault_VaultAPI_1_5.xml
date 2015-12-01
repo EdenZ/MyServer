@@ -7,8 +7,6 @@
       <root url="jar://$MAVEN_REPOSITORY$/net/milkbowl/vault/VaultAPI/1.5/VaultAPI-1.5-javadoc.jar!/" />
       <root url="http://milkbowl.github.io/VaultAPI/" />
     </JAVADOC>
-    <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/net/milkbowl/vault/VaultAPI/1.5/VaultAPI-1.5-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

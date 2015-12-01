@@ -29,6 +29,7 @@ public class MinerCommand implements CommandExecutor {
                     return true;
                 }
             } else if (strings.length == 2) {
+                //miner buy
                 if (strings[0].equalsIgnoreCase("buy")) {
                     int cost, tickets;
                     if (strings[1].equalsIgnoreCase("1")) {
@@ -43,7 +44,7 @@ public class MinerCommand implements CommandExecutor {
                     } else return false;
                     if (MyServer.getEconomy().withdrawPlayer(player, cost).transactionSuccess()) {
                         OreResControl.minerData.ticketModify(player.getName(), tickets);
-                        player.sendMessage(String.format("BIU - %d \nTicket + %d ", cost, tickets));
+                        player.sendMessage(String.format("BE - %d \nTicket + %d ", cost, tickets));
                         return true;
                     }
                 }

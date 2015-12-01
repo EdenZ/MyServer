@@ -47,8 +47,8 @@ public class OreResControl {
      * regen the power
      * @param player name
      */
-    public static void regenPower(String player) {
-        int next = minerData.getPower(player) + minerData.getRegenRate(player);
+    public static void regenPower(String player, int amount) {
+        int next = minerData.getPower(player) + amount;
         int max =  minerData.getMaxPower(player);
         if (next > max) {
             minerData.powerUpdate(player, max);

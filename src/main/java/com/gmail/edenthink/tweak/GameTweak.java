@@ -28,6 +28,9 @@ public class GameTweak {
      * @param player the uped player
      */
     public static void limitMaxLevel(Player player) {
+        if (player.isOp()) {
+            return;
+        }
         int max = playerData.getInt(player.getName(), P_MAX_LEVEL);
         if (player.getLevel() > max) {
             player.setLevel(max);
@@ -40,6 +43,9 @@ public class GameTweak {
      */
     @SuppressWarnings("deprecation")
     public static void noOrePlace(BlockPlaceEvent event) {
+        if (event.getPlayer().isOp()) {
+            return;
+        }
         if (!oreID.contains(event.getBlock().getTypeId())) {
             return;
         }
@@ -52,6 +58,9 @@ public class GameTweak {
      */
     @SuppressWarnings("deprecation")
     public static void noPlaceInRes(BlockPlaceEvent event) {
+        if (event.getPlayer().isOp()) {
+            return;
+        }
         if (event.getBlock().getWorld().getName().equalsIgnoreCase("res")) {
             if (event.getBlock().getTypeId() == 50) {
                 return;

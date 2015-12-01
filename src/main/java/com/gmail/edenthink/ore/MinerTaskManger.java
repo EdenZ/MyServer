@@ -13,15 +13,15 @@ public class MinerTaskManger {
 
     public MinerTaskManger(MyServer plugin) {
         this.plugin = plugin;
+        //Run every minute
         new PowerRegen().runTaskTimer(plugin, 1200, 1200);
     }
 
     class PowerRegen extends BukkitRunnable {
         @Override
         public void run() {
-
             for (Player p : Bukkit.getOnlinePlayers()) {
-                OreResControl.regenPower(p.getName());
+                OreResControl.regenPower(p.getName(), OreResControl.minerData.getRegenRate(p.getName()));
             }
         }
     }

@@ -20,8 +20,7 @@ public abstract class SQLManager {
         try (Statement s = Driver.getConnection().createStatement()) {
             number = s.executeUpdate(sql);
         } catch (SQLException e) {
-            System.err.println("SQL:Error code: " + e.getErrorCode());
-            System.err.println("    Message: " + e.getMessage());
+            System.err.printf("SQL message(%d): %s%n", e.getErrorCode(), e.getMessage());
         }
         return number;
     }
@@ -45,16 +44,14 @@ public abstract class SQLManager {
                     re = resultSet.getObject(attribute);
                 }
             } catch (SQLException e) {
-                System.err.println("SQL:Error code: " + e.getErrorCode());
-                System.err.println("    Message: " + e.getMessage());
+                System.err.printf("SQL message(%d): %s%n", e.getErrorCode(), e.getMessage());
             } finally {
                 if (resultSet != null) {
                     resultSet.close();
                 }
             }
         } catch (SQLException e) {
-            System.err.println("SQL:Error code: " + e.getErrorCode());
-            System.err.println("    Message: " + e.getMessage());
+            System.err.printf("SQL message(%d): %s%n", e.getErrorCode(), e.getMessage());
         }
         return re;
     }

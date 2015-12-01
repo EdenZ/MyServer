@@ -53,4 +53,4 @@ softdepend: [Vault]
 commands:
  miner:
    description: Miner command
-   usage: /miner buy 1/2/3 or /miner show
+   usage: /miner buy 1|2|3 or /miner show

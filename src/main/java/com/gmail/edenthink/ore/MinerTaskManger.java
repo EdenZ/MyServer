@@ -14,7 +14,7 @@ public class MinerTaskManger {
     public MinerTaskManger(MyServer plugin) {
         this.plugin = plugin;
         //Run every minute
-        new PowerRegen().runTaskTimer(plugin, 1200, 1200);
+        new PowerRegen().runTaskTimer(plugin, 1200, 2400);
     }
 
     class PowerRegen extends BukkitRunnable {
